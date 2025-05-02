@@ -1,0 +1,45 @@
+[terrain]
+grid_file = 'geer_canyon.txt'
+nodata_value = -9999
+outlet_id = -1 # set as -1 if outlet id is unavailable
+
+[output]
+output_folder = 'output_geercanyon'
+plot_olf = true
+plot_inf = true
+
+[model_run]
+model_run_time = 200 # min
+storm_duration = 10 # min
+time_step = 2 # min
+activate_inf = true #  set as true to add infiltration process
+
+[infil_info]
+conductivity_file = 'hydr_cond_wildfire.tif' # 'conductivity.tif' '' if no file exist, m/s
+hydraulic_conductivity = 1.0e-7 # m/s
+soil_water_file = '' # 'soil_water.tif' '' if no file exist,
+soil_water_infiltration_depth = 1e-5 # m
+soil_bulk_density=1590.0 # kg/m3
+rock_density=2650.0 # kg/m3
+initial_soil_moisture_content=0.15 # [0-1]
+soil_type="sandy loam"
+volume_fraction_coarse_fragments=0.2  # [0-1]
+coarse_sed_flag=false
+surface_water_minimum_depth=1.0e-8 # m
+soil_pore_size_distribution_index=false
+soil_bubbling_pressure=false  # m
+wetting_front_capillary_pressure_head=false  # m
+# supported soil type:
+# 'sand', loamy sand', 'sandy loam', 'loam', 'silt loam', 'sandy clay loam',
+# 'clay loam', 'silty clay loam', 'sandy clay', 'silty clay', 'clay'
+
+[olf_info]
+rain_file = ''  # '' if no file exist, mm/hr
+rain_intensity = 59.2  # mm/hr
+surface_water_file = '' # '' if no file exist, m
+surface_water_depth = 1e-12 # m
+steep_slopes= true
+alpha = 0.7 # time step coefficient
+mannings_n = 0.03 # manning's roughness coefficient
+g = 9.80665  # acceleration due to gravity m/s^2
+theta = 0.8  # wighting factor

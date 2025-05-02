@@ -1,0 +1,14 @@
+# this file is not tested for record only!!!
+name: mini_project
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - landlab=2.9.0
+  - matplotlib
+  - rasterio
+  - jupyter
+  - tqdm
+  - imageio>=2.19.1
+  - imageio-ffmpeg
+  - pymt_topography
