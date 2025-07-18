@@ -116,7 +116,8 @@ class FloodSimulator:
         # add hydraulic conductivity
         if self.infil_info['conductivity_file'] != '':
             file = rasterio.open(self.infil_info['conductivity_file'])
-            data = file.read(1).flatten()
+            flip_data = np.flipud(file.read(1))  # make sure to flip the tiff file data 
+            data = flip_data.flatten()
             self.hydraulic_conductivity = data
         else:
             self.hydraulic_conductivity = self.infil_info['hydraulic_conductivity']
