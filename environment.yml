@@ -12,3 +12,7 @@ dependencies:
   - imageio>=2.19.1
   - imageio-ffmpeg
   - pymt_topography
+  - soilgrids
+  - pip
+  - pip:
+      - soiltexture
