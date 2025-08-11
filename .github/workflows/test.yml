@@ -1,0 +1,42 @@
+name: Test Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repo
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Install micromamba and create environment from environment.yml
+      - name: Set up micromamba
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yml
+          cache-downloads: true
+          cache-environment: true
+
+      # Install development dependencies
+      - name: Install dev dependencies
+        run: pip install black flake8 nbconvert
+
+      # Lint with Flake8
+      - name: Lint code with Flake8
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --exit-zero --max-line-length=88 --statistics
+
+      # Check code formatting with Black
+      - name: Check code formatting with Black
+        run: black --check .
+
+      # Run the demo_notebook.ipynb
+      - name: Execute demo_notebook.ipynb
+        run: |
+          echo "Running demo_notebook.ipynb..."
+          jupyter nbconvert --to notebook --execute demo_notebook.ipynb --output /dev/null
