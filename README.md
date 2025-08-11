@@ -1,8 +1,9 @@
 # Mini Project
 
-This repository includes Jupyter Notebooks for 
-[watershed delineation](Watershed%20DEM.ipynb) and [overland flow](Demo_notebook.ipynb) 
-simulation.
+### Introduction
+This repository includes a [Demonstration Jupyter Notebook](Demo_notebook.ipynb) 
+created for the COURAGE pilot project. Ths Notebook allows users to run a hydrological 
+runoff model and explore how flash floods are influenced by upstream burned areas.
 
 ### Run the Notebook
 Please first download all the files from this repository and have 
