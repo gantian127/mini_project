@@ -2,7 +2,7 @@
 
 ### Introduction
 This repository includes a [Demonstration Jupyter Notebook](Demo_notebook.ipynb) 
-created for the COURAGE pilot project. Ths Notebook allows users to run a hydrological 
+created for the COURAGE pilot project. This Notebook allows users to run a hydrological 
 runoff model and explore how flash floods are influenced by upstream burned areas.
 
 ### Run the Notebook
