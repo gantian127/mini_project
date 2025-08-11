@@ -4,13 +4,8 @@
 Flood Simulator (Tian Gan, 2023 Aug)
 
 Description:
-This code is created for the participatory modeling project.
-It includes a class to run the overland flow process using Landlab components.
-
-Code References:
-- https://github.com/gantian127/overlandflow_usecase/blob/master/overland_flow.ipynb
-- https://github.com/gregtucker/earthscape_simulator/blob/main/src/evolve_island_world.py
-- https://github.com/landlab/landlab/blob/a5b2f68825a36529acd3c451380ec75e9f48e6e3/landlab/grid/voronoi.py#L174
+This Python module includes a class to run the overland flow process and infiltration
+process using Landlab components.
 
 Usage:
 method1
@@ -20,7 +15,6 @@ fs.run()
 
 method2
 $ python flood_simulator.py config_file.toml
-
 """
 
 import sys
@@ -36,7 +30,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-from landlab.io import read_esri_ascii, write_esri_ascii
+from landlab.io import read_esri_ascii
 from landlab import imshow_grid
 from landlab.components import OverlandFlow, SoilInfiltrationGreenAmpt
 
@@ -116,7 +110,7 @@ class FloodSimulator:
         # add hydraulic conductivity
         if self.infil_info['conductivity_file'] != '':
             file = rasterio.open(self.infil_info['conductivity_file'])
-            flip_data = np.flipud(file.read(1))  # make sure to flip the tiff file data 
+            flip_data = np.flipud(file.read(1))  # make sure to flip the tiff file data
             data = flip_data.flatten()
             self.hydraulic_conductivity = data
         else:
@@ -163,11 +157,11 @@ class FloodSimulator:
             infiltration = SoilInfiltrationGreenAmpt(
                 self.model_grid,
                 hydraulic_conductivity=self.hydraulic_conductivity,
-                soil_bulk_density = self.infil_info['soil_bulk_density'],
+                soil_bulk_density=self.infil_info['soil_bulk_density'],
                 initial_soil_moisture_content=self.infil_info[
                     'initial_soil_moisture_content'],
                 soil_type=self.infil_info['soil_type'],
-                volume_fraction_coarse_fragments= self.infil_info[
+                volume_fraction_coarse_fragments=self.infil_info[
                     'volume_fraction_coarse_fragments'],
                 coarse_sed_flag=self.infil_info['coarse_sed_flag'],
                 surface_water_minimum_depth=self.infil_info[
@@ -276,32 +270,11 @@ class FloodSimulator:
             'outlet_discharge.csv')
         )
 
-        # # save max surface water depth
-        # max_depth = self.model_grid.at_node['max_surface_water__depth']
-        # max_depth[max_depth == 1e-12] = 0
-
-        # # as csv
-        # df = pd.DataFrame(max_depth, columns=['z_value'])
-        # df.to_csv(os.path.join(
-        #     self.output['output_folder']
-        #     if os.path.isdir(self.output['output_folder']) else os.getcwd(),
-        #     'max_water_depth.csv')
-        # )
-
-        # # as ascii
-        # write_esri_ascii(os.path.join(output_folder, "max_water_depth.asc"),
-        #                  self.model_grid, 'max_surface_water__depth', clobber=True)
-
-        # write_esri_ascii(os.path.join(output_folder, "max_discharge.asc"),
-        #                  self.model_grid, 'test_max_discharge', clobber=True
-        #                  )
-
-
 
 if __name__ == "__main__":
     """
-    Launch a model run for flood simulator. 
-    Command-line argument is the path of a configuration file (toml-format). 
+    Launch a model run for flood simulator.
+    Command-line argument is the path of a configuration file (toml-format).
     """
 
     if len(sys.argv) > 1:
@@ -310,4 +283,3 @@ if __name__ == "__main__":
         fs.run()
     else:
         print('Please provide a configuration file path to run the model.')
-
