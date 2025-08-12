@@ -214,22 +214,6 @@ class FloodSimulator:
                 outlet_discharge.append(discharge[self.outlet_id])
                 outlet_times.append(elapsed_time)
 
-                # # save the max discharge at each time step (result analysis)
-                # self.model_grid.at_node['test_max_discharge'] = np.maximum(
-                #     self.model_grid.at_node['test_max_discharge'],
-                #     discharge
-                # )
-
-            # # save surface water depth at each time step
-            # write_esri_ascii(os.path.join(output_folder,
-            #                  "water_depth_{}.asc".format(time_slice)),
-            #                  self.model_grid, 'surface_water__depth', clobber=True)
-
-            # # save the max water depth at each time step
-            # self.model_grid.at_node['max_surface_water__depth'] = np.maximum(
-            #     self.model_grid.at_node['max_surface_water__depth'],
-            #     self.model_grid.at_node['surface_water__depth'])
-
             # plot overland flow results
             if self.output["plot_olf"]:
                 fig, ax = plt.subplots(
