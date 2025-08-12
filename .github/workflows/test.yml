@@ -39,6 +39,7 @@ jobs:
 
       # Run the demo_notebook.ipynb
       - name: Execute demo_notebook.ipynb
+        shell: bash -l {0}
         run: |
           conda list
           jupyter nbconvert --to notebook --execute demo_notebook.ipynb --output /dev/null
