@@ -23,7 +23,7 @@ jobs:
 
       # Install development dependencies
       - name: Install dev dependencies
-        run: pip install black flake8 nbconvert
+        run: pip install "black[jupyter]" flake8
 
       # Lint with Flake8
       - name: Lint code with Flake8
