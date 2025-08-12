@@ -19,7 +19,7 @@ jobs:
         with:
           auto-update-conda: true
           python-version: 3.12
-          activate-environment: mini-project
+          activate-environment: mini_project
           environment-file: environment.yml
           auto-activate-base: false
 
