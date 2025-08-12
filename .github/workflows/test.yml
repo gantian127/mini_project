@@ -3,6 +3,8 @@ name: Test Workflow
 on:
   push:
   pull_request:
+  schedule:
+    - cron: '0 0 1 */6 *'  # At 00:00 UTC on day 1 of every 6th month (Jan, Jul)
 
 jobs:
   lint-and-test:
@@ -41,5 +43,5 @@ jobs:
       - name: Execute demo_notebook.ipynb
         shell: bash -l {0}  # add this to make sure conda env is activated
         run: |
-          conda list
           jupyter nbconvert --to notebook --execute Demo_notebook.ipynb
+          jupyter nbconvert --to notebook --execute ./prepare_elevation/watershed_dem.ipynb
